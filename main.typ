@@ -34,6 +34,7 @@
   - relative freqs of above? don't know! need more info
 
 = probability
+== sample space probabilities
 - conditional probability: $A$, when we know $B$
 #image("media/conditional_probability.png")
 - $A$ and $B$ are independent
@@ -78,3 +79,34 @@
   P(B_j|A) = (P(A|B_j)P(B_j))/(sum^k_(i=1)P(A|B_i)P(B_i)) = (P(A|B_j)P(B_j))/P(A)
   $
   #image("media/bayes's_rule_ex.png")
+
+== other probability paradigm??
+- need better paradigm for continuous situations/nondiscrete outcomes: random variables, prob distributions
+
+- random variable: like a function, maps events in $Omega$ to, eg, real number line (the output. meters ran maybe)
+  - but tbh just think of random variables as their outputs
+  - can have diff random variables for same experiment: number of tails observed, number of heads, whether not heads observed
+  - denoted with uppercase Latin eg $X$, $P(X=x)$
+
+- functions of random variables are random variables! _statistics_ are _functions of data_ are _random variables_
+
+- properties of discrete and continuous prob distributions
+#table(
+  columns: 3,
+  [], [Discrete], [Continuous], 
+  [Name], [pmf: probability mass function], [pdf: probability density function],
+  [Symbol], [$p_X(x)$], [$f_X(x)$],
+  [Properties], 
+  [
+  - $ 0 <= p_X(x) <= 1 $
+  - $ display(sum_("all" x)) p_X(x) = 1 $
+  - $ P(a <= X <= b) = sum_(x in [a,b])p_X(x) $
+  - $ P(a < X < b) = sum_(x in (a,b)) p_X(x) $
+  ], 
+  [
+  - $ f_X(x) >= 0 $
+  - $ integral_("all" x) f_X(x)d x = 1 $
+  - $ P(a <= X <= b) = integral_a^b f_X(x) d x $
+  - $ P(a < X < b) = integral_a^b f_X(x) d x $
+  ]
+)
