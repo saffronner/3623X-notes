@@ -110,3 +110,8 @@
   - $ P(a < X < b) = integral_a^b f_X(x) d x $
   ]
 )
+
+== new
+first example Q2 $E[X^2]$, notice how the weighting probabilty mass function is not changed.
+
+$ integral_("all" x) x f_X(x) d x $
