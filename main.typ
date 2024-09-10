@@ -90,28 +90,44 @@
 
 - functions of random variables are random variables! _statistics_ are _functions of data_ are _random variables_
 
+- expected value operator $E[X] = mu$
+  - $E[c X] = c E[X]$
+  - $E[c] = c$
+  - $E[x + y] = E[x] + E[y]$
+
+- variance operator $V[X] = sigma^2$
+  - $V[X] = E[(x-mu)^2] = "(simplifies to)" E[X^2] - (E[X])^2$
+  - variance is not width, but the square of the width. think about units of $V[X]$ vs units of $E[X]$
+
+- translation/scaling's effects on mean and variance: ($X -> X + b$)
+  - $E[X + b] = E[X] + b$ (translation shifts mean)
+  - $E[a X] = a E[X]$ (scaling shifts mean multiplicatively)
+  - $V[X + b] = V[X]$ (translation doesn't effect width)
+  - $V[a X] = a^2 V[X]$ (scaling widens exponentially. verify via shortcut formula)
+
 - properties of discrete and continuous prob distributions
 #table(
   columns: 3,
   [], [Discrete], [Continuous], 
   [Name], [pmf: probability mass function], [pdf: probability density function],
-  [Symbol], [$p_X(x)$], [$f_X(x)$],
+  [Symbol], [$p_X (x)$], [$f_X (x)$],
   [Properties], 
   [
-  - $ 0 <= p_X(x) <= 1 $
-  - $ display(sum_("all" x)) p_X(x) = 1 $
-  - $ P(a <= X <= b) = sum_(x in [a,b])p_X(x) $
-  - $ P(a < X < b) = sum_(x in (a,b)) p_X(x) $
+  - $ 0 <= p_X (x) <= 1 $
+  - $ display(sum_("all" x)) p_X (x) = 1 $
+  - $ P(a <= X <= b) = sum_(x in [a,b])p_X (x) $
+  - $ P(a < X < b) = sum_(x in (a,b)) p_X (x) $
+
+  - $ E[X] = sum_("all" x) x p_X (x) $
+  - $ E[g(x)] = sum_("all" x) g(x) p_X (x) $
   ], 
   [
   - $ f_X(x) >= 0 $
-  - $ integral_("all" x) f_X(x)d x = 1 $
+  - $ integral_("all" x) f_X (x)d x = 1 $
   - $ P(a <= X <= b) = integral_a^b f_X (x) d x $
   - $ P(a < X < b) = integral_a^b f_X (x) d x $
+
+  - $ E[X] = integral_("all" x) x f_X (x) d x $
+  - $ E[g(x)] = integral_("all" x) g(x) f_X (x) d x $
   ]
 )
-
-== new
-first example Q2 $E[X^2]$, notice how the weighting probabilty mass function is not changed.
-
-$ integral_("all" x) x f_X(x) d x $
