@@ -108,26 +108,16 @@
 - properties of discrete and continuous prob distributions
 #table(
   columns: 3,
+  stroke: none,
+  align: horizon,
   [], [Discrete], [Continuous], 
   [Name], [pmf: probability mass function], [pdf: probability density function],
   [Symbol], [$p_X (x)$], [$f_X (x)$],
   [Properties], 
-  [
-  - $ 0 <= p_X (x) <= 1 $
-  - $ display(sum_("all" x)) p_X (x) = 1 $
-  - $ P(a <= X <= b) = sum_(x in [a,b])p_X (x) $
-  - $ P(a < X < b) = sum_(x in (a,b)) p_X (x) $
-
-  - $ E[X] = sum_("all" x) x p_X (x) $
-  - $ E[g(x)] = sum_("all" x) g(x) p_X (x) $
-  ], 
-  [
-  - $ f_X(x) >= 0 $
-  - $ integral_("all" x) f_X (x)d x = 1 $
-  - $ P(a <= X <= b) = integral_a^b f_X (x) d x $
-  - $ P(a < X < b) = integral_a^b f_X (x) d x $
-
-  - $ E[X] = integral_("all" x) x f_X (x) d x $
-  - $ E[g(x)] = integral_("all" x) g(x) f_X (x) d x $
-  ]
+  [$ 0 <= p_X (x) <= 1 $], [$ f_X(x) >= 0 $],
+  [],[$ display(sum_("all" x)) p_X (x) = 1 $], [$ integral_("all" x) f_X (x)d x = 1 $],
+  [],[$ P(a <= X <= b) = sum_(x in [a,b])p_X (x) $], [$ P(a <= X <= b) = integral_a^b f_X (x) d x $],
+  [],[$ P(a < X < b) = sum_(x in (a,b)) p_X (x) $], [$ P(a < X < b) = integral_a^b f_X (x) d x $],
+  [],[$ E[X] = sum_("all" x) x p_X (x) $], [$ E[X] = integral_("all" x) x f_X (x) d x $],
+  [],[$ E[g(x)] = sum_("all" x) g(x) p_X (x) $], [$ E[g(x)] = integral_("all" x) g(x) f_X (x) d x $],
 )
