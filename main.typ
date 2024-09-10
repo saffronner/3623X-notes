@@ -106,8 +106,8 @@
   [
   - $ f_X(x) >= 0 $
   - $ integral_("all" x) f_X(x)d x = 1 $
-  - $ P(a <= X <= b) = integral_a^b f_X(x) d x $
-  - $ P(a < X < b) = integral_a^b f_X(x) d x $
+  - $ P(a <= X <= b) = integral_a^b f_X (x) d x $
+  - $ P(a < X < b) = integral_a^b f_X (x) d x $
   ]
 )
 
