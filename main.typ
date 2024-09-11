@@ -125,3 +125,38 @@
   [],[$ E[X] = sum_("all" x) x p_X (x) $], [$ E[X] = integral_("all" x) x f_X (x) d x $],
   [],[$ E[g(x)] = sum_("all" x) g(x) p_X (x) $], [$ E[g(x)] = integral_("all" x) g(x) f_X (x) d x $],
 )
+
+- cumulative distribution function (cdf)
+  - accumlated prob up to $x$, inclusive
+  #table(
+    columns: (7em, 1fr, 1fr),
+    stroke: none,
+    align: horizon,
+    table.vline(x: 1),
+    [], [Discrete], [Continuous], 
+    table.hline(),
+    [Symbol], [$F_X (x)$], [$F_X (x)$],
+    table.hline(),
+    [Definition], [$ F_X (x) = sum_(y <= x) p_Y (y) $], [$ F_X (x) = integral_(-infinity)^x f_Y (y) d y $],
+    table.hline(),
+    [Limiting Properties], table.cell(colspan: 2, align: center)[for both, $F_X (-infinity) = 0$ and $F_X (infinity) = 1$],
+    table.hline(),
+    [Reln to pmf/pdf], [$ p_X (x) "is magnitude of jump"\ "in" F_X (x) "at coord" x $], [$ f_X (x) = d/(d x) F_X (x) $],
+    table.hline(),
+    [Reln to Quantile $q$], [$ X = "min"{x : F_X (x) >= q} $], [$ "inverse cdf," X = F_X^(-1) (q) $],
+    table.hline(),
+    [Reln to Prob. Over Range], [$ "It's complicated." $], [$ &P(a <= X <= b)\ = &P(a < X < b)\ = &F_X (b) - F_X (a) $]
+  )
+
+  - inverse cdf: given total prob $q$ to left of (and including) some $x_0$, what is $x_0$?
+    #table(
+      columns: 3, 
+      stroke: none,
+      align: horizon,
+      table.vline(start: 1, x:1),
+      table.vline(start: 1, x:2),
+      [],[input],[output], 
+      [cdf],$ x_0 $, $ q $,
+      table.hline(),
+      [inverse cdf], $ q $, $ x_0 $
+    )
