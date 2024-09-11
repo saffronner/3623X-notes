@@ -90,21 +90,6 @@
 
 - functions of random variables are random variables! _statistics_ are _functions of data_ are _random variables_
 
-- expected value operator $E[X] = mu$
-  - $E[c X] = c E[X]$
-  - $E[c] = c$
-  - $E[x + y] = E[x] + E[y]$
-
-- variance operator $V[X] = sigma^2$
-  - $V[X] = E[(x-mu)^2] = "(simplifies to)" E[X^2] - (E[X])^2$
-  - variance is not width, but the square of the width. think about units of $V[X]$ vs units of $E[X]$
-
-- translation/scaling's effects on mean and variance: ($X -> X + b$)
-  - $E[X + b] = E[X] + b$ (translation shifts mean)
-  - $E[a X] = a E[X]$ (scaling shifts mean multiplicatively)
-  - $V[X + b] = V[X]$ (translation doesn't effect width)
-  - $V[a X] = a^2 V[X]$ (scaling widens exponentially. verify via shortcut formula)
-
 - properties of discrete and continuous prob distributions
 #table(
   columns: 3,
@@ -125,6 +110,21 @@
   [],[$ E[X] = sum_("all" x) x p_X (x) $], [$ E[X] = integral_("all" x) x f_X (x) d x $],
   [],[$ E[g(x)] = sum_("all" x) g(x) p_X (x) $], [$ E[g(x)] = integral_("all" x) g(x) f_X (x) d x $],
 )
+
+- expected value operator $E[X] = mu$
+  - $E[c X] = c E[X]$
+  - $E[c] = c$
+  - $E[x + y] = E[x] + E[y]$
+
+- variance operator $V[X] = sigma^2$
+  - $V[X] = E[(x-mu)^2] = "(simplifies to)" E[X^2] - (E[X])^2$
+  - variance is not width, but the square of the width. think about units of $V[X]$ vs units of $E[X]$
+
+- translation/scaling's effects on mean and variance: ($X -> X + b$)
+  - $E[X + b] = E[X] + b$ (translation shifts mean)
+  - $E[a X] = a E[X]$ (scaling shifts mean multiplicatively)
+  - $V[X + b] = V[X]$ (translation doesn't effect width)
+  - $V[a X] = a^2 V[X]$ (scaling widens exponentially. verify via shortcut formula)
 
 - cumulative distribution function (cdf)
   - accumlated prob up to $x$, inclusive
