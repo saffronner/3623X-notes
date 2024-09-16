@@ -160,3 +160,7 @@
       table.hline(),
       [inverse cdf], $ q $, $ x_0 $
     )
+
+=== families of distributions
+- up till now, practice problems have fixed $theta$ in equations. we often have to find it. (use law of total prob)
+- you alr have LoTP up above. take a good hard look at the examples for this lec.
