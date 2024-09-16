@@ -164,3 +164,15 @@
 === families of distributions
 - up till now, practice problems have fixed $theta$ in equations. we often have to find it. (use law of total prob)
 - you alr have LoTP up above. take a good hard look at the examples for this lec.
+
+=== data sampling code
+- inverse-transform sampling
+  + sample a $q in (0,1)$. (e.g. `runif()`, random uniform)
+  + plug $q$ into $x = F_X^(-1) (q)$, record $x$
+  + repeat $n$ times for a sample size of $n$
+- rejection sampling
+  + choose finite domain $[a,b]$ for $f_X (x)$ that's good enough
+  + let $"max"(f_X (x)) = m$
+  + repeat until $n$ samples recorded:
+    + randomly sample $x' in  [a,b]$ and $y' in [0,m]$.
+    + if $y' <= f_X (x')$, keep the data point. otherwise, reject it and continue
