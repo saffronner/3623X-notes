@@ -127,6 +127,7 @@
   - $V[X + b] = V[X]$ (translation doesn't effect width)
   - $V[a X] = a^2 V[X]$ (scaling widens exponentially. verify via shortcut formula)
 
+#pagebreak(weak: true)
 - cumulative distribution function (cdf)
   - accumlated prob up to $x$, inclusive
   #table(
@@ -164,7 +165,14 @@
 
 === families of distributions
 - up till now, practice problems have fixed $theta$ in equations. we often have to find it. (use law of total prob)
-- you alr have LoTP up above. take a good hard look at the examples for this lec.
+- deriving from Law of Total Prob ($P(A) = sum^k_(i=1) P(A|B_i)P(B_i)$) if we know
+  - $p_(X|theta) (x|theta)$ 
+  - with $theta$ weights from $p_Theta (theta)$,
+  $
+  p_X (x) = sum_theta p_(X|theta) (x|theta) p_Theta (theta)
+  $
+  - if $theta$ is continuous, we may just use an integral
+  - #image("media/lotp_randomvariable.png")
 
 === data sampling code
 - inverse-transform sampling
