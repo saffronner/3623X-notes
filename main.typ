@@ -118,6 +118,7 @@
 
 - variance operator $V[X] = sigma^2$
   - $V[X] = E[(x-mu)^2] = "(simplifies to)" E[X^2] - (E[X])^2$
+  - apparently $V[x + y] = V[x] + V[y]$??? sep 18 class example 2
   - variance is not width, but the square of the width. think about units of $V[X]$ vs units of $E[X]$
 
 - translation/scaling's effects on mean and variance: ($X -> X + b$)
@@ -176,3 +177,21 @@
   + repeat until $n$ samples recorded:
     + randomly sample $x' in  [a,b]$ and $y' in [0,m]$.
     + if $y' <= f_X (x')$, keep the data point. otherwise, reject it and continue
+
+=== statistics
+- reiterating: these are just functions of observed data
+  - $Y = X_1 + cos(X_2) - (X_37)/pi$ is a statistic, but not informative
+  - $overline(X) = 1/n sum_(i=1)^n X_1$ is as well, and is informative of $mu$
+  - $S^2 = 1/(n-1) sum^n_(i=1) (X_1 - overline(X))^2$
+
+- statistics are drawn from sampling distributions (which are just pmfs/pdfs)
+
+- sample mean, stddev, range, median
+
+- $E[overline(X)] = E[X]$, $V[overline(X)] = (V[X])/n$ hold for all distributions
+
+- standard error is the width of the distribution; the standard deviation of a statistic; sqrt of the variance; $ sigma / sqrt(n)$
+
+- expected value of the sample variance $S^2$ is $sigma^2$ after LOTS of math
+  - this is Wednesday: Statistics and Sampling Distributions class example 1
+  - why is $1/(n-1)$ there? create an unbiased example of the population estimate??
