@@ -174,6 +174,28 @@
   - if $theta$ is continuous, we may just use an integral
   - #image("media/lotp_randomvariable.png")
 
+#pagebreak(weak: true)
+- plotting such a pdf: $f_X (x) = integral^infinity_0 theta x^(theta - 1) dot e^(-theta) d theta$
+  ```R
+  x   <- seq(0.001,1,by=0.001) 
+  f.X <- rep(NA,length(x))     
+
+  f <- function(theta,x) {
+    return(theta*x^(theta-1)*exp(-theta))
+  }
+  for ( ii in 1:length(x) ) {  # we loop over x's indices (1, 2, ..., length(x))
+    f.X[ii] <- integrate(f,0,Inf,x=x[ii])$value
+  }
+
+  # Now let's plot!
+  library(ggplot2)
+  df <- data.frame(x,f.X)
+  ggplot(data=df,mapping=aes(x=x,y=f.X)) + 
+    geom_line(col="firebrick") +
+    ylim(c(0,3)) + 
+    ylab(expression(f[X]*"(x)"))
+  ```
+
 === data sampling code
 - inverse-transform sampling
   + sample a $q in (0,1)$. (e.g. `runif()`, random uniform)
