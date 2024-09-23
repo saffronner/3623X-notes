@@ -207,6 +207,7 @@
   + repeat until $n$ samples recorded:
     + randomly sample $x' in  [a,b]$ and $y' in [0,m]$.
     + if $y' <= f_X (x')$, keep the data point. otherwise, reject it and continue
+- see `media/data_sampling.Rmd`
 
 === statistics
 - reiterating: these are just functions of observed data
