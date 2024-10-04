@@ -87,6 +87,7 @@
   - but tbh just think of random variables as their outputs
   - can have diff random variables for same experiment: number of tails observed, number of heads, whether not heads observed
   - denoted with uppercase Latin eg $X$, $P(X=x)$
+  - NO INHERENT NOTION OF PROBABILITY!
 
 - functions of random variables are random variables! _statistics_ are _functions of data_ are _random variables_
 
@@ -103,15 +104,15 @@
   [Symbol], [$p_X (x)$], [$f_X (x)$],
   table.hline(),
   [Properties], 
-  [$ 0 <= p_X (x) <= 1 $], [$ f_X(x) >= 0 $],
+  [$ 0 <= p_X (x) <= 1 $], [$ f_X (x) >= 0 $],
   [],[$ display(sum_("all" x)) p_X (x) = 1 $], [$ integral_("all" x) f_X (x)d x = 1 $],
   [],[$ P(a <= X <= b) = sum_(x in [a,b])p_X (x) $], [$ P(a <= X <= b) = integral_a^b f_X (x) d x $],
   [],[$ P(a < X < b) = sum_(x in (a,b)) p_X (x) $], [$ P(a < X < b) = integral_a^b f_X (x) d x $],
   [],[$ E[X] = sum_("all" x) x p_X (x) $], [$ E[X] = integral_("all" x) x f_X (x) d x $],
-  [],[$ E[g(x)] = sum_("all" x) g(x) p_X (x) $], [$ E[g(x)] = integral_("all" x) g(x) f_X (x) d x $],
+  [(law of \ unconscious \ statistician)],[$ E[g(x)] = sum_("all" x) g(x) p_X (x) $], [$ E[g(x)] = integral_("all" x) g(x) f_X (x) d x $],
 )
 
-- expected value operator $E[X] = mu$
+- expected value operator $E[X] = mu_X$, mean of the distribution $X$ was sampled from
   - $E[c X] = c E[X]$
   - $E[c] = c$
   - $E[x + y] = E[x] + E[y]$
@@ -210,19 +211,60 @@
 - see `media/data_sampling.Rmd`
 
 === statistics
+- iid: independant and identically distributed
+
 - reiterating: these are just functions of observed data
   - $Y = X_1 + cos(X_2) - (X_37)/pi$ is a statistic, but not informative
   - $overline(X) = 1/n sum_(i=1)^n X_1$ is as well, and is informative of $mu$
-  - $S^2 = 1/(n-1) sum^n_(i=1) (X_1 - overline(X))^2$
+  - $S^2 = 1/(n-1) sum^n_(i=1) (X_1 - overline(X))^2$ is informative of $sigma^2$
 
-- statistics are drawn from sampling distributions (which are just pmfs/pdfs)
+- statistics are random variables!!!
+
+  - drawn from sampling distributions (which are just pmfs/pdfs)
 
 - sample mean, stddev, range, median
 
 - $E[overline(X)] = E[X]$, $V[overline(X)] = (V[X])/n$ hold for all distributions
 
-- standard error is the width of the distribution; the standard deviation of a statistic; sqrt of the variance; $ sigma / sqrt(n)$
+- standard error is the width of the distribution; the standard deviation of a statistic; $sqrt(V[Y])$, where $Y$ is a random variable/sampling distribution/pmf or pdf for a statistic
 
 - expected value of the sample variance $S^2$ is $sigma^2$ after LOTS of math
   - this is Wednesday: Statistics and Sampling Distributions class example 1
   - why is $1/(n-1)$ there? create an unbiased example of the population estimate??
+
+=== likelihood function
+- the likelihood function quantifies how likely a $theta$ is given our data
+- let it be defined:
+  $
+  cal(L)(theta | arrow(X)) = product^n_(i=1) f_X (x_i | theta)
+  $
+  for continuous data, simply using $p_X (x_i | theta)$ for discrete
+
+- notice that 
+  #image("media/likelihood_function.png")
+
+- why? in inference, we want to estimate $theta$ given data! so we maximize $cal(L)$ for $theta$
+
+- to make math easier, we use the log-likelihood $cal(l)(theta | arrow(X)) = log cal(L)(theta | arrow(X))$
+
+=== bias and variance
+- bias: $B[hat(theta)] = E[hat(theta) - theta] = E[hat(theta)] - theta$
+  - estimator biased: $B[hat(theta)] = 0$, unbiased $B[hat(theta)] != 0$
+
+- variance: $V[hat(theta)]$ (recall defn above)
+
+- mean-squared error (MSE): $"MSE"[hat(theta)] = E[(hat(theta)-theta)^2] =_"simpl to" V[hat(theta)] + (B[hat(theta)])^2$
+  - select "best" estimator by taking the one with lowest MSE
+
+=== Maximum Likelihood Estimation
+- procedure (it's literally just AP Calc maximization):
+  + find $cal(L) (theta | arrow(X))$
+  + find $cal(l) (theta | arrow(X))$
+  + compute $cal(l)'(theta | arrow(X))$, partial or normal with respect to $theta$
+  + solve the above equal to 0 for $theta$, now called $hat(theta)_"MLE"$ (also replace $x_i$ with $X_i$)
+
+- this does not work with domain-specifying parameters (e.g. $f_X (x) = 1/theta "for" x in [0, theta]$)
+
+- property of MLEs: invariance property
+  - if $theta' = g(theta)$, then $hat(theta)'_"MLE" = g(hat(theta)_"MLE")$
+  - e.g., .0 what
