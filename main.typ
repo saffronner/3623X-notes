@@ -220,7 +220,7 @@
 
 - statistics are random variables!!!
 
-  - drawn from sampling distributions (which are just pmfs/pdfs)
+  - drawn from sampling distributions (which are just pmfs/pdfs)file:///home/saffron/Downloads/36235%20exam3/all.pdf
 
 - sample mean, stddev, range, median
 
@@ -268,3 +268,15 @@
 - property of MLEs: invariance property
   - if $theta' = g(theta)$, then $hat(theta)'_"MLE" = g(hat(theta)_"MLE")$
   - e.g., .0 what
+
+=== more abt confidence intervals
+$P(hat(theta)_L <= theta <= hat(theta)_R)$ where the theta HATS are the r.v.s!
+
+point estimates dont need sampling distributions! point estimates do!
+
+when doing the math, finding lower and upper bound should be the same thing except having a swapped $q$
+
+
+=== erm.
+we skipped a bunch of notetaking. it's exam 3 time.
+
