@@ -402,3 +402,82 @@ we skipped a bunch of notetaking. it's exam 3 time.
   - $y_"RR"$ NOT needed to compute $p$ but IS needed to compute power.
 
 ==== lecture on normal population variance
+- setting: let's say we want a hypothesis test about $sigma^2$ after get $n$ iid data (we assume/know normally distr)
+
+- null/alt hypotheses:
+  
+  $H_0 : & sigma^2 = sigma^2_0\
+   H_A : & sigma^2 < sigma^2_0 "(lower-tail)"\
+         & sigma^2 != sigma^2_0 "(two-tail)"\
+         & sigma^2 > sigma^2_0 "(upper-tail)"$
+
+- most common test statistic
+  - $Y = S^2$
+  - where $E[Y] = sigma^2$, increases with $sigma^2$
+
+- what is sampl dist for that statistic?
+  - $S^2 ~ ???$ (can be derived)
+  - $W = ((n-1)S^2)/(sigma^2) ~ chi^2_(n-1)$
+
+- do what with these dists?
+  - solve for rr boundaries: $F_W (((n-1) S^2_"RR")/(sigma^2_0) | sigma_0^2) = q$
+  - solve via `p/q chisq()`, not `uniroot()`.
+  - use table!
+
+TODO these have really weird examples, go check them out
+
+=== Simple Linear Regression
+- predictor/indep/explanatory/feature vs response/dependent/target
+
+- general model: $Y_i | x_i = f(x_i) + epsilon_i$
+
+- in simple linear regression, $Y_i = beta_0 + beta_1 X_i + epsilon_i$
+  - (note: linear means linear in parameters. $... b_1 X^2_i ...$ _is_ linear)
+
+- $E[Y_i] = beta_0 + beta_1 X_i$
+- $V[Y_i] = sigma^2$ by assumption
+
+- each observed $Y_i$ is random variable sampled from *some* distribution w/ mean 0, constant variance $sigma^2$
+
+- the regresion line is $hat(Y)_i = hat(beta)_0 + hat(beta)_1 X_i = $ expected value of $Y_i$ :0
+
+- residuals are $e_i = Y_i - hat(Y)_i = Y_i - hat(beta)_0 - hat(beta)_1 x_i$
+
+- convention: estimate beta params by minimizing sum of squared errors (SSE) $= sum^n_(i=1) e_i^2$
+  - both beta hats via SSE are unbiased, consistent estimators
+
+- some R interpretation thus far:
+  #image("media/lm_1.png")
+
+- is  there a significant reln bt x and Y?
+  - $H_0 : &beta_1 = 0\
+     H_A : &beta_1 != 0$
+
+- to test this, we _finally_ need that distributional assumption (usually, the normal)
+
+- i.e., our error assumptions are now:
+  - $E[epsilon_i] = 0$
+  - $V[epsilon_i] = sigma^2$
+  - $epsilon_i ~ N$ for mu  and sigma above
+
+- correlation bt two r.v.s is $rho_(X Y) = ("Cov"(X,Y))/sqrt(V[X]V[Y]),
+|rho_(X Y)| <= 1$.
+  - Cov covered in Ch 6, later
+  - $rho$ from $0$ (no correlation) to $plus.minus 1$ (perfect correlation)
+  - estimated by Pearson correlation coefficient, $R$.
+  - $R^2$: coefficient of determination; proportion of variability in $Y_i$ accounted for by model
+
+- more R interpretation: (TODO: what does the t value and p value mean?)
+  #image("media/lm_2.png")
+
+=== ANOVA
+- $Y_(i j) = mu + tau_i + epsilon_(i j)$ where $i$: group; $j$: datum within group $i$
+  - $tau$ is the effect of each group in the discrete explanatory
+  - $epsilon_(i j) ~ N(0, sigma^2)$ (normality assumption _required_)
+  - test: null is all tau same, alt is at least one tau differs.
+
+- ANOVA intuition:
+  #image("media/ANOVA_intuition.png")
+
+- math time:
+  - uhhhhhhhhhh shucks
