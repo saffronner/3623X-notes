@@ -280,3 +280,125 @@ when doing the math, finding lower and upper bound should be the same thing exce
 === erm.
 we skipped a bunch of notetaking. it's exam 3 time.
 
+=== review of point estimation
+- moment gen fn $M_X (t) = E[e^(t X)]$
+  - if $Y = b + sum_(i=1)^n a_i X_i$, then $M_Y (t) = e^(b t)sum_(i=1)^n M_(X_i) (a_i t)$
+  - match mgfs to match distributions
+  - used for CIs and HTs
+    - sum of $n$ indep normal r.v.s is a normal r.v.
+    - sample mean of $n$ iid normal r.v.s is a normal r.v.
+    - standardized normal r.v. ($(x-mu)/sigma$) is a standard normal r.v.
+    - sum of $n$ squared standard normal r.v.s is $chi^2$ distr for $n$ deg of freedom
+
+- general transformations of single random variable
+  - given $f_X (x)$ and $U = g(X)$, what is $f_U (u)$?
+  - why?
+  - sqre of one std normal r.v. is $chi^2$ for 1 d.o.f.
+  - in part, allows derivation of $t$ distr.
+
+- distribution of $T = (overline(X) - mu)/(S \/ sqrt(n)) ~ t_(n-1) attach(->, t: "d") Z ~ N(0,1)$ as $n -> infinity$
+
+- performance of point estimators
+  - bias: $B[hat(theta)] = E[hat(theta) - theta] = E[hat(theta) - theta]$ (if bias tends to 0, asymptotically biased.)
+  - variance: $V[hat(theta)]$
+  - mean-squared error: $"MSE"[hat(theta)] = (B[hat(theta)])^2 + V[hat(theta)]$
+  - consistency: tldr, whether $"MSE"[hat(theta)] -> 0$ as $n-> infinity$
+
+- how can we get a good point estimator? Maximum Likelihood Estimation!
+  - asymptotically unbiased
+  - invariance property: $hat(g(theta))_"MLE" = g(hat(theta)_"MLE")$
+  - maximuze $l$ (log-likelihood function)
+
+=== Cramer-Rao Lower Bound (CRLB) on variance
+- valid when $n$ iid data from dist whose domain no depend on $theta$ and $hat(theta)$ unbiased.
+- $V[hat(theta)] >= 1/(I_n ( theta)) = 1/(n dot I(theta))$
+- where the Fischer information $I(theta) = - E[(delta^2)/(delta theta^2) log f_X (x | theta)]$ (p_X for discrete)
+
+=== Central Limit Theorem
+- what if non-normal distributions but want infer about pop mean?
+  - point estimates unaffected: don't need distr
+  - CIs and HTs _are_, need sampl distrs.
+
+- $overline(X) attach(->, t:"d") Y ~ N(mu, sigma^2/n)$
+
+- ex: $n=100$ iid data from unknown dist with $mu=20, sigma^2 = 4$. Find $P(19.8 <= overline(X) <= 20.2)$
+- ex: How many iid data do we need to draw from a dist with $mu = 10, sigma^2 = 2$ for $P(overline(X) < 10.2) > 0.9$?
+
+=== Confidence Intervals for norm dist parameters
+- review:
+  - two sided CI: a random interval that fulfills $P(hat(theta)_L <= theta <= hat(theta)_H) = 1 - alpha$
+  - coverage: $100(1-alpha)%$ of eval'd intervals overlap $theta$
+  - compute by: find statistic $Y$ with a $y_"obs"$. solve $F_Y (y_"obs" | theta) = q$ for parameter ($theta$), finding $q$ from the CI table
+
+- now we must know how to uniroot it out
+
+- ex: We draw $n=100$ iid data from unknown distribution with mean $mu$. have $overline(x)_"obs" = 10, S^2 = 9.$ find 95% two side CI for $mu$.
+
+  trick! invoke CLT and just treat $S$ as $sigma$. proceed as expected with uniroot for compute step.
+- ex: $n=8$ iid data from normal with mean $mu$, variance $sigma^2$. have $s^2_"obs"=6$. What is 90% upper bound on $sigma^2$?
+
+=== Hypothesis Tests again as well
+- review:
+  - preconceived notion about dist param $theta$ (e.g. normal mean). state that null hypothesis.
+  - select a statistic $Y$ that informs $theta$, write down sampl dist given null, and see if $y_"obs"$ is consistent with null sampl distr.
+
+- if $y_"obs"$ falls in a rejection region, decide to reject null (otherwise, fail to reject)
+  - $P("reject null" | "null true") = alpha <--$ user-set Type I error
+  - $P("fail to reject null" | theta "arb") = beta <--$ Type II error (function of $alpha, theta$)
+  - $P("reject null" | theta "arb") = 1 - beta = "power"$
+
+- Kolmorgorov-Smirnov (KS) test
+  - $H_0 :$ observed data are from some continuous distribution
+  - or $H_0:$ two datasets are from same continuous distribution
+  #image("media/KS_test.png")
+
+- Shapiro-Wilk test
+  - stronger (more powerful) test
+  - *only* for whether data are normally distributed
+  - limited to $n<=5000$ data
+
+==== lecture on p-value, power, the normal mean
+- setting: let's say we want a hypothesis test about $mu$ after get $n$ iid data (we assume/know normally distr)
+
+- null/alt hypotheses:
+  
+  $H_0 : & mu = mu_0\
+   H_A : & mu < mu_0 "(lower-tail)"\
+         & mu != mu_0 "(two-tail)"\
+         & mu > mu_0 "(upper-tail)"$
+
+- most common test statistic
+  - $Y = overline(X)$
+  - where $E[Y] = mu$, increases with $mu$
+
+- what is sampl dist for that statistic?
+  - $sigma^2$ known: $overline(X) ~ N(mu, sigma^2/n)$ or $(overline(X) - mu)/(sigma \/ sqrt(n)) ~ N(0,1)$
+  - $sigma^2$ unknown: $(overline(X) - mu)/(S\/sqrt(n)) ~ t_(n-1)$
+
+- do what with these dists?
+  - solve for rr boundaries: $F_(overline(X)) (overline(x)_"RR" | mu_0) = q$
+  - we fix $mu_0$ so we solve via `qnorm()`, not `uniroot()`.
+  - use table!
+
+- do we need $overline(x)_"RR", t_"RR"$ to decide reject/not? 
+  - no! the $p$-value exists!
+
+- $p$-value: prob that we observe $y_"obs"$ or "more extreme" statistic value, if $H_0$ is correct.
+  - if $E[Y]$ incr with $theta$, then ...
+    - lower: $p = P(Y <= y_"obs" | H_0)$
+    - upper: $p = P(Y >= y_"obs" | H_0)$
+    - lower: $p = 2 dot min[P(Y <= y_"obs" | H_0), P(Y >= y_"obs" | H_0)]$
+    - can use cdf codes (e.g. `pnorm()`)
+  - if $y_"obs" = y_"RR"$, then $p = alpha$
+  - if $H_0$ is correct, then $p ~ "Uniform"(0,1)$, then $P(p <= alpha) = integral_0^alpha d p = alpha$ (think abt it! :3)
+  - $p != $ prob that null correct! this makes no sense!
+  - select $alpha$ before $p$. don't $p$ hack.
+
+- ex: $n=9$ iid data from normal with mean $mu$ and variance $sigma^2 = 16$, $overline(x)_"obs" = 11, alpha = 0.05$. Find $p$ if $H_0 : mu = mu_0 = 10$ vs $H_A : mu > mu_0$
+
+- test power: prob that we reject null given any (arb) value for $theta$
+  - $"power"(theta) = P("reject null" | theta)$
+  - implies $"power"(theta=theta_0) = alpha$
+  - $y_"RR"$ NOT needed to compute $p$ but IS needed to compute power.
+
+==== lecture on normal population variance
