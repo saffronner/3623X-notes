@@ -164,7 +164,7 @@
       [inverse cdf], $ q $, $ x_0 $
     )
 
-=== families of distributions
+== families of distributions
 - up till now, practice problems have fixed $theta$ in equations. we often have to find it. (use law of total prob)
 - deriving from Law of Total Prob ($P(A) = sum^k_(i=1) P(A|B_i)P(B_i)$) if we know
   - $p_(X|theta) (x|theta)$ 
@@ -197,7 +197,7 @@
     ylab(expression(f[X]*"(x)"))
   ```
 
-=== data sampling code
+== data sampling code
 - inverse-transform sampling
   + sample a $q in (0,1)$. (e.g. `runif()`, random uniform)
   + plug $q$ into $x = F_X^(-1) (q)$, record $x$
@@ -210,7 +210,7 @@
     + if $y' <= f_X (x')$, keep the data point. otherwise, reject it and continue
 - see `media/data_sampling.Rmd`
 
-=== statistics
+== statistics
 - iid: independant and identically distributed
 
 - reiterating: these are just functions of observed data
@@ -232,7 +232,7 @@
   - this is Wednesday: Statistics and Sampling Distributions class example 1
   - why is $1/(n-1)$ there? create an unbiased example of the population estimate??
 
-=== likelihood function
+== likelihood function
 - the likelihood function quantifies how likely a $theta$ is given our data
 - let it be defined:
   $
@@ -247,7 +247,7 @@
 
 - to make math easier, we use the log-likelihood $cal(l)(theta | arrow(X)) = log cal(L)(theta | arrow(X))$
 
-=== bias and variance
+== bias and variance
 - bias: $B[hat(theta)] = E[hat(theta) - theta] = E[hat(theta)] - theta$
   - estimator biased: $B[hat(theta)] = 0$, unbiased $B[hat(theta)] != 0$
 
@@ -256,7 +256,7 @@
 - mean-squared error (MSE): $"MSE"[hat(theta)] = E[(hat(theta)-theta)^2] =_"simpl to" V[hat(theta)] + (B[hat(theta)])^2$
   - select "best" estimator by taking the one with lowest MSE
 
-=== Maximum Likelihood Estimation
+== Maximum Likelihood Estimation
 - procedure (it's literally just AP Calc maximization):
   + find $cal(L) (theta | arrow(X))$
   + find $cal(l) (theta | arrow(X))$
@@ -269,7 +269,7 @@
   - if $theta' = g(theta)$, then $hat(theta)'_"MLE" = g(hat(theta)_"MLE")$
   - e.g., .0 what
 
-=== more abt confidence intervals
+== more abt confidence intervals
 $P(hat(theta)_L <= theta <= hat(theta)_R)$ where the theta HATS are the r.v.s!
 
 point estimates dont need sampling distributions! point estimates do!
@@ -277,10 +277,10 @@ point estimates dont need sampling distributions! point estimates do!
 when doing the math, finding lower and upper bound should be the same thing except having a swapped $q$
 
 
-=== erm.
+== erm.
 we skipped a bunch of notetaking. it's exam 3 time.
 
-=== review of point estimation
+== review of point estimation
 - moment gen fn $M_X (t) = E[e^(t X)]$
   - if $Y = b + sum_(i=1)^n a_i X_i$, then $M_Y (t) = e^(b t)sum_(i=1)^n M_(X_i) (a_i t)$
   - match mgfs to match distributions
@@ -309,12 +309,12 @@ we skipped a bunch of notetaking. it's exam 3 time.
   - invariance property: $hat(g(theta))_"MLE" = g(hat(theta)_"MLE")$
   - maximuze $l$ (log-likelihood function)
 
-=== Cramer-Rao Lower Bound (CRLB) on variance
+== Cramer-Rao Lower Bound (CRLB) on variance
 - valid when $n$ iid data from dist whose domain no depend on $theta$ and $hat(theta)$ unbiased.
 - $V[hat(theta)] >= 1/(I_n ( theta)) = 1/(n dot I(theta))$
 - where the Fischer information $I(theta) = - E[(delta^2)/(delta theta^2) log f_X (x | theta)]$ (p_X for discrete)
 
-=== Central Limit Theorem
+== Central Limit Theorem
 - what if non-normal distributions but want infer about pop mean?
   - point estimates unaffected: don't need distr
   - CIs and HTs _are_, need sampl distrs.
@@ -324,7 +324,7 @@ we skipped a bunch of notetaking. it's exam 3 time.
 - ex: $n=100$ iid data from unknown dist with $mu=20, sigma^2 = 4$. Find $P(19.8 <= overline(X) <= 20.2)$
 - ex: How many iid data do we need to draw from a dist with $mu = 10, sigma^2 = 2$ for $P(overline(X) < 10.2) > 0.9$?
 
-=== Confidence Intervals for norm dist parameters
+== Confidence Intervals for norm dist parameters
 - review:
   - two sided CI: a random interval that fulfills $P(hat(theta)_L <= theta <= hat(theta)_H) = 1 - alpha$
   - coverage: $100(1-alpha)%$ of eval'd intervals overlap $theta$
@@ -337,7 +337,7 @@ we skipped a bunch of notetaking. it's exam 3 time.
   trick! invoke CLT and just treat $S$ as $sigma$. proceed as expected with uniroot for compute step.
 - ex: $n=8$ iid data from normal with mean $mu$, variance $sigma^2$. have $s^2_"obs"=6$. What is 90% upper bound on $sigma^2$?
 
-=== Hypothesis Tests again as well
+== Hypothesis Tests again as well
 - review:
   - preconceived notion about dist param $theta$ (e.g. normal mean). state that null hypothesis.
   - select a statistic $Y$ that informs $theta$, write down sampl dist given null, and see if $y_"obs"$ is consistent with null sampl distr.
@@ -357,7 +357,7 @@ we skipped a bunch of notetaking. it's exam 3 time.
   - *only* for whether data are normally distributed
   - limited to $n<=5000$ data
 
-==== lecture on p-value, power, the normal mean
+=== lecture on p-value, power, the normal mean
 - setting: let's say we want a hypothesis test about $mu$ after get $n$ iid data (we assume/know normally distr)
 
 - null/alt hypotheses:
@@ -401,7 +401,7 @@ we skipped a bunch of notetaking. it's exam 3 time.
   - implies $"power"(theta=theta_0) = alpha$
   - $y_"RR"$ NOT needed to compute $p$ but IS needed to compute power.
 
-==== lecture on normal population variance
+=== lecture on normal population variance
 - setting: let's say we want a hypothesis test about $sigma^2$ after get $n$ iid data (we assume/know normally distr)
 
 - null/alt hypotheses:
@@ -426,7 +426,7 @@ we skipped a bunch of notetaking. it's exam 3 time.
 
 TODO these have really weird examples, go check them out
 
-=== Simple Linear Regression
+== Simple Linear Regression
 - predictor/indep/explanatory/feature vs response/dependent/target
 
 - general model: $Y_i | x_i = f(x_i) + epsilon_i$
@@ -470,7 +470,7 @@ TODO these have really weird examples, go check them out
 - more R interpretation: (TODO: what does the t value and p value mean?)
   #image("media/lm_2.png")
 
-=== ANOVA
+== ANOVA
 - $Y_(i j) = mu + tau_i + epsilon_(i j)$ where $i$: group; $j$: datum within group $i$
   - $tau$ is the effect of each group in the discrete explanatory
   - $epsilon_(i j) ~ N(0, sigma^2)$ (normality assumption _required_)
