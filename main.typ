@@ -481,3 +481,65 @@ TODO these have really weird examples, go check them out
 
 - math time:
   - uhhhhhhhhhh shucks
+
+== Binomial Distribution
+- statistical process: seq of r.v.s, can be spatially/temporally linked
+
+- consider $n$ coin flips, each with prob $p$ of heads. let $X$ be number of heads in $k$ flips. thus:
+
+  results: $Y_1, Y_2, ..., Y_k <--$ a Bernoulli process
+
+  $ Y_i ~ "Bernoulli"(p), #h(.25em)p_Y (y) = cases(p & "if" y=1, 1-p & "if" y=0) ==> X = sum_(i=1)^k Y_i$
+
+  $X$ is the binomial!
+
+- the binomial pmf governs binomial experiments, where:
+  + number of trials $k$ fixed
+  + trial can only succeed or fail
+  + success prob. $p$ fixed
+  + outcomes independant
+  
+- the binomial pmf, probability of $x$ successes in fixed $k$ trials, is defined 
+  $ p_X (x) = binom(k, x) p^x (1-p)^(k-x) = (k!)/(x!(k-x)!) p^x (1-p)^(k-x), x in {0, 1, ..., k} $
+  - "what is prob. roll one 6 in four rolls?"
+  - $E[X] = k p, V[X] = k p (1 - p)$
+  - R codes: `_binom()`
+
+- the negative binomial pmf, probability of $x$ failures in fixed $s$ successes, is defined
+  $ p_X (x) = & binom(x+s-1, x) p^(s-1) (1-p)^x dot && p && = binom(x+s-1, x) p^s (1-p)^x, x in NN \
+  & x "failures in first" && "success" \
+  & s-1 "trials" && "in last"
+  $
+  - "what is prob. team A gets 4 wins in six games?"
+  - $E[X] = s(1 - p)\/p, V[X] = s(1-p)\/p^2$
+  - R codes: `_nbinom()`
+
+=== binomial cdf/mgf
+- note that we have pmfs. thus, for $X$ binomial, $F_X (x) = sum_(y=0)^(floor(x)) binom(k, y) p^y (1-p)^(k-y)$
+
+- observe: 
+  $ 
+  P(4 <= X <= 5) &= p_X (4) + p_X (5)\
+  &= P(X <= 5) - P(X <= 3)\
+  &= F_X (5) - F_X (3)
+  $
+  crazy stuff. can be simpler to just find which masses lie in range, and sum.
+
+- notes 02 scan wtf are we on abt again about inverse cdfs
+
+- after finding mgf of binom and sum of binoms, we may conclude:
+  $ "if" Y "is a sum of" n "Binom"(k,p),\
+  Y ~ "Binom"(n k,p) $
+  - reasonable: 4 single coin flips same as 1 four-trial coin flips
+
+- the mean $overline(X)$ is WEIRD. 
+  - mgf can't find distribution
+  - given binom data, it's just easier to do inference on $sum X_i$ than $overline(X)$, with identical results
+
+- notes 02 scan wtf do we know of mean dist? some weird $f_(overline(X)) (overline(x)) = binom(n k, n overline(x)) p^(n overline(x)) (1-p)^(n k - n overline(x)) "for" overline(x) in {0, 1/n, 2/n, ..., k}$ thing ...
+
+== Order Statistics
+- "resistant statistics" like medians can be cool. can we find its sampl. dist?
+
+- consider sorting $n$ iid data ${X_1, ..., X_n}$ into an ordered set ${X_((1)), ..., X_((n))}$
+  - sample range would be $X_((n)) - X_((1))$, sample median $X_(((n+1)/2))$ (if $n$ odd)
