@@ -1,7 +1,7 @@
 #set page(numbering: "1/1")
 #set text(font: "CMU Serif")
-#show "•": set text(font: "")
-#show math.nothing: set text(font: "");
+#show "•": set text(font: "libertinus serif")
+#show math.nothing: set text(font: "libertinus serif");
 
 = intro
 - foreshadowing/context: under all prob computations are _sample spaces_
