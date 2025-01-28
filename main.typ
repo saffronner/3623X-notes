@@ -587,8 +587,8 @@ TODO these have really weird examples, go check them out
   - and it does NOT have invariance property $(hat(g(theta))_"MVUE" != g(hat(theta)_"MVUE"))$
 
 - to derive MVUE:
-  + find a _sufficient statistic_ $U$ for $theta$
-    - (technically should show $U$ is _minimally_ suff. and _complete_. we can just assume these true in this course, though.)
+  + find a _sufficient statistic_ $Y$ for $theta$
+    - (technically should show $Y$ is _minimally_ suff. and _complete_. we can just assume these true in this course, though.)
   + derive $E[Y] = g(theta)$ and "fix" s.t. $E[h(Y)] = theta$ where $h(Y)$ becomes the MVUE (???)
     - e.g. MVUE for $mu$ in a normal?. we know $sum X_i$ suff, so
       $
