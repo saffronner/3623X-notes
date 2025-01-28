@@ -543,3 +543,54 @@ TODO these have really weird examples, go check them out
 
 - consider sorting $n$ iid data ${X_1, ..., X_n}$ into an ordered set ${X_((1)), ..., X_((n))}$
   - sample range would be $X_((n)) - X_((1))$, sample median $X_(((n+1)/2))$ (if $n$ odd)
+
+== Sufficient Statistics and the Minimum Variance Unbiased Estimator (MVUE)
+=== sufficient statistics
+- captures all info about $theta$ contained in a data sample
+  - i.e. _no other stat will provide additional info about $theta$_
+
+- not unique! remember for binom, $overline(X)$ and $sum X_i$ can both be used for inference
+  - functions of suff. stats. are suff.
+
+- note: ancillary statistics don't depend on $theta$.
+  - e.g. $S^2$ depends on $sigma^2$ but NOT $mu$; thus, when inferring $mu$, $S^2$ is ancillary
+
+- to identify a suff stat:
+  $
+    cal(L) (theta | arrow(x)) = g(theta, arrow(x)) dot h(arrow(x))
+  $
+  split likelihood fn into all terms with $theta$ and all without. ($h(arrow(x))$ can be $1$.)
+
+  suff stat will be in $g(arrow(x), theta)$.
+
+  #image("media/find_suff_stat.png")
+
+- what if, eg, _joint_ sufficient statistic: $sum X_i^2$ _and_ $sum X_i$?
+
+  beyond scope of class, but can be used ig.
+
+=== MVUE
+- so far, finding a point estimator is either 
+  + define ourselves
+  + or let MLE find one
+
+- MLE review:
+  - consistent i.e. asymptotically unbiased!
+  - room for improvement? what about ALWAYS unbiased (all $n$) and small variance?
+
+- MVUE summary
+  - MVUE has smallest variance of all unbiased estimators. 
+    - i.e. if MVUE doesn't achieve CRLB, no unbiased estimator of $theta$ will.
+  - but it doesn't always exist + MLE easier to derive/simulate
+  - and it does NOT have invariance property $(hat(g(theta))_"MVUE" != g(hat(theta)_"MVUE"))$
+
+- to derive MVUE:
+  + find a _sufficient statistic_ $U$ for $theta$
+    - (technically should show $U$ is _minimally_ suff. and _complete_. we can just assume these true in this course, though.)
+  + derive $E[Y] = g(theta)$ and "fix" s.t. $E[h(Y)] = theta$ where $h(Y)$ becomes the MVUE (???)
+    - e.g. MVUE for $mu$ in a normal?. we know $sum X_i$ suff, so
+      $
+        &E[sum_(i=1)^n X_i] = sum_(i=1)^n E[X_i] = sum_(i=1)^n mu = n mu \
+        ==>&E[1/n sum_(i=1)^n X_i] = mu\
+        ==>&hat(mu)_"MVUE" = overline(X)
+      $
