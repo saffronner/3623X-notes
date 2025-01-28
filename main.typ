@@ -555,7 +555,7 @@ TODO these have really weird examples, go check them out
 - note: ancillary statistics don't depend on $theta$.
   - e.g. $S^2$ depends on $sigma^2$ but NOT $mu$; thus, when inferring $mu$, $S^2$ is ancillary
 
-- to identify a suff stat:
+- to identify a suff stat, use "factorization criteria":
   $
     cal(L) (theta | arrow(x)) = g(theta, arrow(x)) dot h(arrow(x))
   $
