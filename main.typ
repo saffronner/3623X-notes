@@ -544,6 +544,8 @@ TODO these have really weird examples, go check them out
 - consider sorting $n$ iid data ${X_1, ..., X_n}$ into an ordered set ${X_((1)), ..., X_((n))}$
   - sample range would be $X_((n)) - X_((1))$, sample median $X_(((n+1)/2))$ (if $n$ odd)
 
+- see notes for exact formulae to take away from this lecture
+
 == Sufficient Statistics and the Minimum Variance Unbiased Estimator (MVUE)
 === sufficient statistics
 - captures all info about $theta$ contained in a data sample
